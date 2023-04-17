@@ -16,6 +16,10 @@ class PostsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        userIdLabel.layer.backgroundColor = UIColor.brown.cgColor
+        userIdLabel.layer.masksToBounds = true
+        userIdLabel.layer.cornerRadius = 5
     }
 
 

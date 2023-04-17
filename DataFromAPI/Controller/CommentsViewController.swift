@@ -32,6 +32,7 @@ class CommentsViewController: UIViewController {
                 let decodeJSON = JSONDecoder()
                 decodeJSON.keyDecodingStrategy = .convertFromSnakeCase
                 self.commentsArray = try decodeJSON.decode([CommentsModel].self, from: unwarappedData)
+                self.filterData()
                 DispatchQueue.main.async {
                     self.commentsTabView.reloadData()
                 }
@@ -44,7 +45,7 @@ class CommentsViewController: UIViewController {
     
     func filterData() {
 //        filteredArray = commentsArray.filter({$0.id == postId})
-        for item in commentsArray where item.id == postId {
+        for item in commentsArray where item.postId == postId {
             filteredArray.append(item)
         }
     }
@@ -74,6 +75,10 @@ extension CommentsViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
     }
 }
 
